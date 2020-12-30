@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.JButton;
@@ -20,24 +22,27 @@ import javax.swing.border.Border;
  * @author chobus
  */
 public class AdhesionCalc {
-
+    
+    double width;
+    double length;
+    double depth;
+    double density;
+    double caseVolume;
+    double resultWeight;
+    double resultTotal;
+    
     AdhesionCalc(){
-        JFrame root = new JFrame("BoxLayout Demo");
+        JFrame root = new JFrame("Adhesion Calculator");
         root.setLayout(new FlowLayout());
         root.setSize(300,530);
         root.setResizable(false);
         root.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         //Dimension btnDim = new Dimension(100,25);
-        
-        JButton btnCalc = new JButton("Расчитать");
-        JButton btnDiscard = new JButton("Сбросить");
-        JButton btnClose = new JButton("Закрыть");
-        
         JTextArea taResultNumberOf = new JTextArea(1,7);
         taResultNumberOf.setEditable(false);
         JTextArea taResultWeight = new JTextArea(1,10);
-        taResultWeight.setEditable(false);
+        taResultWeight.setEditable(false);        
         
         JLabel jlAdhesion = new JLabel("<ADHESION>");
         jlAdhesion.setFont(new Font("Laksaman", Font.BOLD, 20));
@@ -70,10 +75,63 @@ public class AdhesionCalc {
         //jlWidth.setMaximumSize(btnDim);
         
         JTextField tfWidth = new JTextField(10);
+        tfWidth.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent ae){
+                width = Double.parseDouble(tfWidth.getText());
+            }
+        });
         JTextField tfLength = new JTextField(10);
+        tfLength.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent ae){
+                length = Double.parseDouble(tfLength.getText());
+            }
+        });
         JTextField tfDepth = new JTextField(10);
+        tfDepth.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent ae){
+                depth = Double.parseDouble(tfDepth.getText());
+            }
+        });
         JTextField tfDensity = new JTextField(8);
+        tfDensity.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent ae){
+                density = Double.parseDouble(tfDensity.getText());
+            }
+        });
         JTextField tfCase = new JTextField(8);
+        tfCase.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent ae){
+                caseVolume = Double.parseDouble(tfCase.getText());
+            }
+        });
+        
+        JButton btnCalc = new JButton("Расчитать");
+        btnCalc.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent ae){
+                taResultNumberOf.setText(""+width);                             // !!! Temp value !!!
+                taResultWeight.setText(""+(width/2));                           // !!! Temp value !!!
+            }
+        });
+        JButton btnDiscard = new JButton("Сбросить");
+        btnDiscard.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent ae){
+                width=0.0;
+                length=0.0;
+                depth=0.0;
+                density=0.0;
+                caseVolume=0.0;
+                resultWeight=0.0;
+                resultTotal=0.0;
+                tfWidth.setText("");
+                tfLength.setText("");
+                tfDepth.setText("");
+                tfDensity.setText("");
+                tfCase.setText("");
+                taResultNumberOf.setText("");
+                taResultWeight.setText("");
+            }
+        });
+        JButton btnClose = new JButton("Закрыть");
         
         String measureWidth[] = {" m "," cm "," mm "};
         String measureLength[] = {" m "," cm "," mm "};
