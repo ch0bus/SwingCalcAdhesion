@@ -1,7 +1,9 @@
 package adhesioncalc;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.JButton;
@@ -11,6 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
+import javax.swing.border.Border;
 
 /**
  *
@@ -21,7 +24,8 @@ public class AdhesionCalc {
     AdhesionCalc(){
         JFrame root = new JFrame("BoxLayout Demo");
         root.setLayout(new FlowLayout());
-        root.setSize(300,510);
+        root.setSize(300,530);
+        root.setResizable(false);
         root.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         //Dimension btnDim = new Dimension(100,25);
@@ -31,9 +35,18 @@ public class AdhesionCalc {
         JButton btnClose = new JButton("Закрыть");
         
         JTextArea taResultNumberOf = new JTextArea(1,7);
+        taResultNumberOf.setEditable(false);
         JTextArea taResultWeight = new JTextArea(1,10);
+        taResultWeight.setEditable(false);
         
-        JLabel jlAdhesion = new JLabel("<ADHESION>");        
+        JLabel jlAdhesion = new JLabel("<ADHESION>");
+        jlAdhesion.setFont(new Font("Laksaman", Font.BOLD, 20));
+        //lAdhesion.setPreferredSize(new Dimension(250, 100));
+        jlAdhesion.setForeground(new Color(50, 100, 50));
+        jlAdhesion.setBackground(new Color(250, 0, 0));
+        //Border border = BorderFactory.createLineBorder(Color.ORANGE);
+        //jlAdhesion.setBorder(border);
+        
         JLabel jlWidth = new JLabel("Ширина:");
         //jlWidth.setMinimumSize(btnDim);
         //jlWidth.setMaximumSize(btnDim);
