@@ -29,44 +29,70 @@ public class Calc {
         measureCase = mCase;
         
         // width
-        if(measureWidth.equals("м"))
-          width = (w * 100);
-        else if(measureWidth.equals("см"))
-            width = w;
-        else // if(measureDepth.equals("мм"))
-            width = (w / 10);
+        switch(measureWidth){
+            case "м":
+                width = (w * 100);
+                break;
+            case "см":
+                width = w;
+                break;
+            case "мм":
+                width = (w / 10);
+                break;
+        }
         
         // length
-        if(measureLength.equals("м"))
-          length = (l * 100);
-        else if(measureLength.equals("см"))
-            length = l;
-        else // if(measureDepth.equals("мм"))
-            length = (l / 10);
+        switch(measureLength){
+            case "м":
+                length = (l * 100);
+                break;
+            case "см":
+                length = l;
+                break;
+            case "мм":
+                length = (l / 10);
+                break;
+        }
         
         // depth
-        if(measureDepth.equals("м"))
-          depth = (l * 100);
-        else if(measureDepth.equals("см"))
-            depth = l;
-        else // if(measureDepth.equals("мм"))
-            depth = (l / 10);
+        switch(measureDepth){
+            case "м":
+                depth = (dep * 100);
+                break;
+            case "см":
+                depth = dep;
+                break;
+            case "мм":
+                depth = (dep / 10);
+                break;
+        }
         
         //density 
-        if(measureDensity.equals("г/см3"))
-          density = den;
-        else // if(measureDensity.equals("кг/см3"))
-            density = (den * 1000);
+        switch(measureDensity){
+            case "г/см3":
+                density = den;
+                break;
+            case "кг/см3":
+                density = (den * 1000);
+                break;                
+        }
         
         // caseVolume
-        if(measureCase.equals("мл"))
-            caseVolume = c;
-        else if(measureCase.equals("л"))
-            caseVolume = (c * 1000);
-        else if(measureCase.equals("г"))
-            caseVolume = (c / density);
-        else //if(measureCase.equals("кг"))
-            caseVolume = ( (c * 1000) / density );
+        switch(measureCase){
+            case "мл":
+                caseVolume = c;
+                break;
+            case "л":
+                caseVolume = (c * 1000);
+                break;
+            case "г":
+                caseVolume = (c / density);
+                break;
+            case "кг":
+                caseVolume = ( (c * 1000) / density );
+                break;
+        }
+        
     }
     
     public double totalWeight(){
