@@ -32,6 +32,11 @@ public class AdhesionCalc {
     double caseVolume;
     double resultWeight;
     double resultTotal;
+    String measureValueWidth;
+    String measureValueLength;
+    String measureValueDepth;
+    String measureValueDensity;
+    String measureValueCase;
     
     AdhesionCalc(){
         JFrame root = new JFrame("Adhesion Calculator");
@@ -40,7 +45,6 @@ public class AdhesionCalc {
         root.setResizable(false);
         root.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
-        //Dimension btnDim = new Dimension(100,25);
         JTextArea taResultNumberOf = new JTextArea(1,7);
         taResultNumberOf.setEditable(false);
         JTextArea taResultWeight = new JTextArea(1,10);
@@ -48,33 +52,18 @@ public class AdhesionCalc {
         
         JLabel jlAdhesion = new JLabel("<ADHESION>");
         jlAdhesion.setFont(new Font("Laksaman", Font.BOLD, 20));
-        //lAdhesion.setPreferredSize(new Dimension(250, 100));
         jlAdhesion.setForeground(new Color(50, 100, 50));
         jlAdhesion.setBackground(new Color(250, 0, 0));
         //Border border = BorderFactory.createLineBorder(Color.ORANGE);
         //jlAdhesion.setBorder(border);
         
         JLabel jlWidth = new JLabel("Ширина:");
-        //jlWidth.setMinimumSize(btnDim);
-        //jlWidth.setMaximumSize(btnDim);
         JLabel jlLength = new JLabel("Длина:    ");
-        //jlLength.setMinimumSize(btnDim);
-        //jlLength.setMaximumSize(btnDim);
         JLabel jlDepth = new JLabel("Глубина:");
-        //jlDepth.setMinimumSize(btnDim);
-        //jlDepth.setMaximumSize(btnDim);
         JLabel jlDensity = new JLabel("Плотность:");
-        //jlDensity.setMinimumSize(btnDim);
-        //jlDensity.setMaximumSize(btnDim);
         JLabel jlCase = new JLabel("Объём тары:");
-        //jlCase.setMinimumSize(btnDim);
-        //jlCase.setMaximumSize(btnDim);
         JLabel jlWeight = new JLabel("Расход, кг:   ");
-        //jlWeight.setMinimumSize(btnDim);
-        //jlWeight.setMaximumSize(btnDim);
         JLabel jlNumberOf = new JLabel("Количество, шт:");
-        //jlWidth.setMinimumSize(btnDim);
-        //jlWidth.setMaximumSize(btnDim);
         
         JTextField tfWidth = new JTextField(10);
         tfWidth.addActionListener(new ActionListener(){
@@ -107,14 +96,53 @@ public class AdhesionCalc {
             }
         });
         
+        String measureWidth[] = {"мм","см","м"};
+        String measureLength[] = {"м","см","мм"};
+        String measureDepth[] = {"мм","см","м"};
+        String measureDensity[] = {"г/см3","кг/см3"};
+        String measureCase[] = {"мл", "литр","кг","г"};
+        
+        JComboBox cbMeasureWidth = new JComboBox(measureWidth);
+        cbMeasureWidth.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent ae){
+                measureValueWidth = (String) cbMeasureWidth.getSelectedItem();
+            }
+        });
+        JComboBox cbMeasureLength = new JComboBox(measureLength);
+        cbMeasureLength.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent ae){
+                measureValueLength = (String) cbMeasureLength.getSelectedItem();               
+            }
+        });
+        JComboBox cbMeasureDepth = new JComboBox(measureDepth);
+        cbMeasureDepth.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent ae){
+                measureValueDepth = (String) cbMeasureDepth.getSelectedItem();
+            }
+        });
+        JComboBox cbMeasureDensity = new JComboBox(measureDensity);
+        cbMeasureDensity.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent ae){
+                measureValueDensity = (String) cbMeasureDensity.getSelectedItem();
+            }
+        });
+        JComboBox cbMeasureCase = new JComboBox(measureCase);
+        cbMeasureCase.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent ae){
+                measureValueCase = (String) cbMeasureCase.getSelectedItem();
+            }
+        });
+        
         JButton btnCalc = new JButton("Расчитать");
         btnCalc.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent ae){
                 
-                Calc cal = new Calc(width,length,depth,density,caseVolume);
+                Calc cal = new Calc(
+                        measureValueWidth, measureValueLength, measureValueDepth, measureValueDensity, measureValueCase,
+                        width,length,depth,density,caseVolume);
                 
-                taResultNumberOf.setText(""+cal.totalNumberOf());                             // !!! Temp value !!!
-                taResultWeight.setText(""+cal.totalWeight());                           // !!! Temp value !!!
+                taResultNumberOf.setText(""+cal.totalNumberOf());                           
+                taResultWeight.setText(""+cal.totalWeight());                           
             }
         });
         JButton btnDiscard = new JButton("Сбросить");
@@ -145,17 +173,6 @@ public class AdhesionCalc {
                     System.exit(0);
             }
         });
-        
-        String measureWidth[] = {" m "," cm "," mm "};
-        String measureLength[] = {" m "," cm "," mm "};
-        String measureDepth[] = {" m "," cm "," mm "};
-        String measureDensity[] = {"g/cm2","kg/cm2"};
-        String measureCase[] = {" liter ","ml","kg","g"};
-        JComboBox cbMeasureWidth = new JComboBox(measureWidth);
-        JComboBox cbMeasureLength = new JComboBox(measureLength);
-        JComboBox cbMeasureDepth = new JComboBox(measureDepth);
-        JComboBox cbMeasureDensity = new JComboBox(measureDensity);
-        JComboBox cbMeasureCase = new JComboBox(measureCase);
         
         Box box0 = Box.createVerticalBox();
         Box box1 = Box.createHorizontalBox();
