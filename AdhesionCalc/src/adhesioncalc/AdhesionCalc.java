@@ -1,4 +1,5 @@
 package adhesioncalc;
+import adhesioncalc.calculator.Calc;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -109,8 +110,11 @@ public class AdhesionCalc {
         JButton btnCalc = new JButton("Расчитать");
         btnCalc.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent ae){
-                taResultNumberOf.setText(""+width);                             // !!! Temp value !!!
-                taResultWeight.setText(""+(width/2));                           // !!! Temp value !!!
+                
+                Calc cal = new Calc(width,length,depth,density,caseVolume);
+                
+                taResultNumberOf.setText(""+cal.totalNumberOf());                             // !!! Temp value !!!
+                taResultWeight.setText(""+cal.totalWeight());                           // !!! Temp value !!!
             }
         });
         JButton btnDiscard = new JButton("Сбросить");
@@ -222,8 +226,8 @@ public class AdhesionCalc {
         box9.add(btnClose);
         
         root.add(box0);
-        root.add(box1);
         root.add(box2);
+        root.add(box1);
         root.add(box3);
         root.add(box4);
         root.add(box5);
