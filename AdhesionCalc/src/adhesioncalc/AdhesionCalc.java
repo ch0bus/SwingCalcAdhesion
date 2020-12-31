@@ -12,6 +12,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
@@ -131,7 +132,15 @@ public class AdhesionCalc {
                 taResultWeight.setText("");
             }
         });
-        JButton btnClose = new JButton("Закрыть");
+        JButton btnClose = new JButton(" Закрыть ");
+        btnClose.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent ae){
+                int response = JOptionPane.showConfirmDialog(root, "Закрыть приложение?", "Выход", JOptionPane.YES_NO_OPTION);
+                if(response==JOptionPane.YES_OPTION)
+                    //root.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                    System.exit(0);
+            }
+        });
         
         String measureWidth[] = {" m "," cm "," mm "};
         String measureLength[] = {" m "," cm "," mm "};
