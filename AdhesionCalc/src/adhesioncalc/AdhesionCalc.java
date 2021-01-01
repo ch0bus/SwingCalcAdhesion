@@ -32,11 +32,11 @@ public class AdhesionCalc {
     double caseVolume;
     double resultWeight;
     double resultTotal;
-    String measureValueWidth;
-    String measureValueLength;
-    String measureValueDepth;
-    String measureValueDensity;
-    String measureValueCase;
+    String measureValueWidth="мм";
+    String measureValueLength="м";
+    String measureValueDepth="мм";
+    String measureValueDensity="г/см3";
+    String measureValueCase="г";
     
     AdhesionCalc(){
         JFrame root = new JFrame("Adhesion Calculator");
@@ -100,7 +100,7 @@ public class AdhesionCalc {
         String measureLength[] = {"м","см","мм"};
         String measureDepth[] = {"мм","см","м"};
         String measureDensity[] = {"г/см3","кг/см3"};
-        String measureCase[] = {"мл", "литр","кг","г"};
+        String measureCase[] = {"г", "кг", "мл","л"};
         
         JComboBox cbMeasureWidth = new JComboBox(measureWidth);
         cbMeasureWidth.addActionListener(new ActionListener(){

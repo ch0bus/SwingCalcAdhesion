@@ -96,7 +96,7 @@ public class Calc {
     }
     
     public double totalWeight(){
-        return (width*length*depth)*density;
+        return ( (width*length*depth)*density ) / 1000;
     }
     
     public double totalNumberOf(){
