@@ -10,8 +10,8 @@ public class Calc {
     double depth;
     double density;
     double caseVolume;
-    double resultWeight;
-    double resultTotal;
+    //double resultWeight;
+    //double resultTotal;
     String measureWidth;
     String measureLength;
     String measureDepth;
@@ -102,4 +102,36 @@ public class Calc {
     public double totalNumberOf(){
         return (width*length*depth) / caseVolume;
     }
+    
+    public double returnSeamWidthValue(){
+        return width;
+    }
+    public double returnSeamLengthValue(){
+        return length;
+    }
+    public double returnSeamDepthValue(){
+        return depth;
+    }
+    public double returnSeamDensityValue(){
+        return density;
+    }
+    public double returnCaseValue(){
+        return caseVolume;
+    }
+    public String returnMeasureWidth(){
+        return measureWidth;
+    }
+    public String returnMeasureLength(){
+        return measureLength;
+    }
+    public String returnMeasureDepth(){
+        return measureDepth;
+    }
+    public String returnMeasureDensity(){
+        return measureDensity;
+    }
+    public String returnMeasureCase(){
+        return measureCase;
+    }
+    
 }
