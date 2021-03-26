@@ -41,7 +41,7 @@ public class AdhesionCalc {
     AdhesionCalc(){
         JFrame root = new JFrame("Adhesion Calculator");
         root.setLayout(new FlowLayout());
-        root.setSize(300,530);
+        root.setSize(300,600);
         root.setResizable(false);
         root.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
@@ -174,6 +174,28 @@ public class AdhesionCalc {
             }
         });
         
+        JButton btnSave = new JButton("Сохранить");
+        btnSave.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent ae){
+                int response = JOptionPane.showConfirmDialog(
+                        root, "Сохранить данные?", "Сохраить данные", JOptionPane.YES_NO_OPTION);
+                if(response==JOptionPane.YES_OPTION)
+                    //root.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                    System.exit(0);
+            }
+        });
+        
+        JButton btnLogfile = new JButton("  Журнал  ");
+        btnLogfile.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent ae){
+                int response = JOptionPane.showConfirmDialog(
+                        root, "Выберите файл", "Журнал", JOptionPane.YES_NO_OPTION);
+                if(response==JOptionPane.YES_OPTION)
+                    //root.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                    System.exit(0);
+            }
+        });
+        
         Box box0 = Box.createVerticalBox();
         Box box1 = Box.createHorizontalBox();
         Box box2 = Box.createHorizontalBox();
@@ -184,6 +206,8 @@ public class AdhesionCalc {
         Box box7 = Box.createHorizontalBox();
         Box box8 = Box.createHorizontalBox();
         Box box9 = Box.createHorizontalBox();
+        Box box10 = Box.createHorizontalBox();
+        
         box0.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         box1.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         box2.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
@@ -194,7 +218,8 @@ public class AdhesionCalc {
         box7.setBorder(BorderFactory.createEmptyBorder(10, 10, 1, 10));
         box8.setBorder(BorderFactory.createEmptyBorder(1, 10, 10, 10));
         box9.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        
+        box10.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+                
         box0.add(jlAdhesion);
         
         box1.add(jlWidth);
@@ -242,6 +267,10 @@ public class AdhesionCalc {
         box9.add(Box.createRigidArea( new Dimension(30, 0) ));
         box9.add(btnClose);
         
+        box10.add(btnSave);
+        box10.add(Box.createRigidArea( new Dimension(30, 0) ));
+        box10.add(btnLogfile);
+        
         root.add(box0);
         root.add(box2);
         root.add(box1);
@@ -252,6 +281,8 @@ public class AdhesionCalc {
         root.add(box7);
         root.add(box8);
         root.add(box9);
+        root.add(box10);
+        
         root.setVisible(true);        
     }
     
